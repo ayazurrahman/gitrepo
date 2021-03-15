@@ -1,0 +1,29 @@
+<div class="row justify-content-center m-4">
+    <div class="col-sm-6">
+        <h3>Filter Repositories</h3>
+        <form autocomplete="off">
+            <input type="text" class="form-control" [(ngModel)]="repo" name="repo" (input)="searchRepo(repo)" [disabled]="!repoResponseData">
+        </form>
+        
+    </div>
+</div>
+<div class="row justify-content-center m-4" *ngIf="!errorMsg && repoResponseData">
+  <div class="col-sm-6">
+    <h6 style="text-decoration: underline;">{{userName}}'s Repositories</h6>
+  </div>
+</div>
+<div class="row justify-content-center m-4" *ngIf="errorMsg">
+  <div class="col-sm-6">
+    <h6 style="text-decoration: underline;">{{errorMsg}}</h6>
+  </div>
+</div>
+<div class="row justify-content-center m-4" *ngFor="let item of repoResponseData">
+    <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <a href="{{item.url}}" target="_blank">{{item.url}}</a>
+          </div>
+        </div>
+      </div>
+</div>
